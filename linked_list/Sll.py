@@ -93,6 +93,41 @@ class singlylinkedlist:
             fast=fast.next.next
         return slow.data
 
+    def is_palindrome(self):
+
+        if self.head is None or self.head.next is None:
+            return True
+
+        # Step 1: Find the middle
+        slow = self.head
+        fast = self.head
+
+        while fast.next is not None and fast.next.next is not None:
+            slow = slow.next
+            fast = fast.next.next
+
+        # Step 2: Reverse the second half
+        second_half = self.reverse(slow.next)
+        slow.next = second_half
+
+        # Step 3: Compare both halves
+        left = self.head
+        right = second_half
+        result = True
+
+        while right is not None:
+            if left.data != right.data:
+                result = False
+                break
+
+            left = left.next
+            right = right.next
+
+        # Step 4: Restore the original linked list
+        slow.next = self.reverse(second_half)
+
+        return result
+
 ll=singlylinkedlist()
 # ll.add_at_begin(10)
 # ll.add_at_begin(20)
