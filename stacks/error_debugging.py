@@ -12,13 +12,20 @@ class Stack:
         newnode = Node(data)
         newnode.next = self.top
         self.top = newnode
-        
 
     def pop(self):
         if self.top is None:
             print("Stack is empty")
         else:
+            deleted = self.top.data
             self.top = self.top.next
+            print("Deleted:", deleted)
+
+    def peek(self):
+        if self.top is None:
+            print("Stack is empty")
+        else:
+            print("Top:", self.top.data)
 
     def display(self):
         current = self.top
@@ -37,3 +44,4 @@ s.push(30)
 s.display()
 s.pop()
 s.display()
+s.peek()
