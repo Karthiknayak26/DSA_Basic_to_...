@@ -73,6 +73,26 @@ class singlylinkedlist:
             current=current.next
         return False
 
+    def reverse(self):
+        previous=None
+        current=self.head
+        while current is not None:
+            nextnode=current.next
+            current.next=previous
+            previous=current
+            current=nextnode
+        self.head=previous
+
+    def find_middle(self):
+        if self.head is None:
+            return None
+        slow=slow.next
+        fast=fast.next
+        while fast is not None and fast.next is not None:
+            slow=slow.next
+            fast=fast.next.next
+        return slow.data
+
 ll=singlylinkedlist()
 # ll.add_at_begin(10)
 # ll.add_at_begin(20)
@@ -88,6 +108,18 @@ ll=singlylinkedlist()
 # ll.delete_after_node(20)
 # ll.search(20)
 # ll.display()
+ll.insert_at_tail(10)
+ll.insert_at_tail(20)
+ll.insert_at_tail(30)
+ll.insert_at_tail(40)
+
+print("Before reversing:")
+ll.display()
+
+ll.reverse()
+
+print("After reversing:")
+ll.display()
 
 while True:
     print("1. Insert at beginning")
