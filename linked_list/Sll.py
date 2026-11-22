@@ -128,6 +128,60 @@ class singlylinkedlist:
 
         return result
 
+    def remove_duplicates(self):
+
+        seen = set()
+        current = self.head
+        previous = None
+
+        while current is not None:
+
+            if current.data in seen:
+                previous.next = current.next
+
+            else:
+                seen.add(current.data)
+                previous = current
+
+            current = current.next
+    def split_alternate(self):
+
+        first = singlylinkedlist()
+        second = singlylinkedlist()
+
+        first_tail = None
+        second_tail = None
+
+        current = self.head
+        index = 0
+
+        while current is not None:
+
+            new_node = node(current.data)
+
+            if index % 2 == 0:
+
+                if first.head is None:
+                    first.head = new_node
+                else:
+                    first_tail.next = new_node
+
+                first_tail = new_node
+
+            else:
+
+                if second.head is None:
+                    second.head = new_node
+                else:
+                    second_tail.next = new_node
+
+                second_tail = new_node
+
+            current = current.next
+            index += 1
+
+        return first, second
+
 ll=singlylinkedlist()
 # ll.add_at_begin(10)
 # ll.add_at_begin(20)
